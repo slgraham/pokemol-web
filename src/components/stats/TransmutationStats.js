@@ -8,7 +8,7 @@ import { GET_MOLOCH } from '../../utils/Queries';
 import BottomNav from '../shared/BottomNav';
 import ErrorMessage from '../shared/ErrorMessage';
 import Loading from '../shared/Loading';
-import { ViewDiv } from '../../App.styles';
+import { ViewDiv, PadDiv } from '../../App.styles';
 import LootGrab from './LootGrab';
 import LootShareDistro from './LootSharesDistro';
 import TokenInfo from './TokenInfo';
@@ -70,53 +70,55 @@ const TransmutationStats = (props) => {
 
   return (
     <ViewDiv>
-      <h3>Stats</h3>
-      <Flex>
-        <Box p={3} width={1 / 2}>
-          <LootGrab
-            data={data}
-            setupValues={transmutationService.setupValues}
-            getRequestToken={getRequestToken}
-          />
-        </Box>
-        <Box p={3} width={1 / 2}>
-          <LootShareDistro data={data} PIECOLORS={PIECOLORS} />
-        </Box>
-      </Flex>
-      <Flex>
-        <Box p={3} width={1 / 2}>
-          <TokenInfo
-            setupValues={transmutationService.setupValues}
-            PIECOLORS={PIECOLORS}
-            getTokenInfo={getTokenInfo}
-          />
-        </Box>
-        <Box p={3} width={1 / 2}>
-          <TransmutationStatus
-            setupValues={transmutationService.setupValues}
-            PIECOLORS={PIECOLORS}
-            getTokenInfo={getTokenInfo}
-          />
-        </Box>
-      </Flex>
-      <Flex>
-        <Box p={3} width={1 / 2}>
-          <h4>Github</h4>
-          <p>
-            repo status:{' '}
-            <a href={transmutationService.setupValues.githubRepo}>link</a>
-          </p>
-          {/* <img src="https://i.imgur.com/p8rXwlW.png" alt="github charts" /> */}
-        </Box>
-        <Box p={3} width={1 / 2}>
-          <h4>live Proposals</h4>
-        </Box>
-      </Flex>
-      <div>
-        <h4>More info DAOHAUS Stats</h4>
-      </div>
+      <PadDiv>
+        <h3>Stats</h3>
+        <Flex>
+          <Box p={3} width={1 / 2}>
+            <LootGrab
+              data={data}
+              setupValues={transmutationService.setupValues}
+              getRequestToken={getRequestToken}
+            />
+          </Box>
+          <Box p={3} width={1 / 2}>
+            <LootShareDistro data={data} PIECOLORS={PIECOLORS} />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={3} width={1 / 2}>
+            <TokenInfo
+              setupValues={transmutationService.setupValues}
+              PIECOLORS={PIECOLORS}
+              getTokenInfo={getTokenInfo}
+            />
+          </Box>
+          <Box p={3} width={1 / 2}>
+            <TransmutationStatus
+              setupValues={transmutationService.setupValues}
+              PIECOLORS={PIECOLORS}
+              getTokenInfo={getTokenInfo}
+            />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={3} width={1 / 2}>
+            <h4>Github</h4>
+            <p>
+              repo status:{' '}
+              <a href={transmutationService.setupValues.githubRepo}>link</a>
+            </p>
+            {/* <img src="https://i.imgur.com/p8rXwlW.png" alt="github charts" /> */}
+          </Box>
+          <Box p={3} width={1 / 2}>
+            <h4>live Proposals</h4>
+          </Box>
+        </Flex>
+        <div>
+          <h4>More info DAOHAUS Stats</h4>
+        </div>
 
-      <BottomNav />
+        <BottomNav />
+      </PadDiv>
     </ViewDiv>
   );
 };

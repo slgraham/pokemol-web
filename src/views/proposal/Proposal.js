@@ -73,7 +73,6 @@ const Proposal = (props) => {
 
   return (
     <>
-      <p>{'' + txLoading}</p>
       {txLoading && <Loading />}
       <ProposalDetail
         submitVote={submitVote}
