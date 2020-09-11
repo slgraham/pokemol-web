@@ -73,12 +73,15 @@ const Proposal = (props) => {
 
   return (
     <>
-      {txLoading && <Loading />}
-      <ProposalDetail
-        submitVote={submitVote}
-        processProposal={processProposal}
-        proposal={data.proposal}
-      />
+      {txLoading ? (
+        <Loading />
+      ) : (
+        <ProposalDetail
+          submitVote={submitVote}
+          processProposal={processProposal}
+          proposal={data.proposal}
+        />
+      )}
     </>
   );
 };
