@@ -67,7 +67,7 @@ const ProposalGutsV2 = ({ proposal, daoData }) => {
             </>
           ) : (
             <>
-              <LabelH5>Applicant</LabelH5>
+              <LabelH5>Recipient</LabelH5>
               <AddressProfileDisplay address={proposal.applicant} />
             </>
           )}
@@ -110,7 +110,7 @@ const ProposalGutsV2 = ({ proposal, daoData }) => {
 
       {proposal.trade ? (
         <>
-          <LabelH5>Applicant</LabelH5>
+          <LabelH5>Recipient</LabelH5>
           <AddressProfileDisplay address={proposal.applicant} />
 
           <LabelH5>Proposed by</LabelH5>

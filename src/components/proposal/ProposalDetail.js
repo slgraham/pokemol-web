@@ -126,7 +126,7 @@ const ProposalDetail = ({ proposal, processProposal, submitVote, canVote }) => {
         <ProposalV2Guts proposal={proposal} daoData={daoData} />
       ) : (
         <>
-          <LabelH5>Applicant</LabelH5>
+          <LabelH5>Recipient</LabelH5>
           <AddressProfileDisplay address={proposal.applicant} />
           <LabelH5>Proposed by</LabelH5>
           <AddressProfileDisplay address={proposal.memberAddress} />

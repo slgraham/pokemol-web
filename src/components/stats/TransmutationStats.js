@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { Box, Flex } from 'rebass';
 
+import styled from 'styled-components';
+
 import { DaoServiceContext } from '../../contexts/Store';
 import { GET_MOLOCH } from '../../utils/Queries';
 import BottomNav from '../shared/BottomNav';
@@ -13,6 +15,11 @@ import LootGrab from './LootGrab';
 import LootShareDistro from './LootSharesDistro';
 import TokenInfo from './TokenInfo';
 import TransmutationStatus from './TransmutationStatus';
+
+const StyledBox = styled(Box)`
+  border: 1px solid ${(props) => props.theme.baseFontColor};
+  padding: 25px;
+`;
 
 const PIECOLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
 
@@ -75,51 +82,30 @@ const TransmutationStats = (props) => {
   return (
     <ViewDiv>
       <PadDiv>
-        <h3>Stats</h3>
+        <h2>Transmutation Stats</h2>
+
         <Flex>
-          <Box p={3} width={1 / 2}>
-            <LootGrab
-              data={data}
-              setupValues={transmutationService.setupValues}
-              getRequestToken={getRequestToken}
-            />
-          </Box>
-          <Box p={3} width={1 / 2}>
-            <LootShareDistro data={data} PIECOLORS={PIECOLORS} />
-          </Box>
-        </Flex>
-        <Flex>
-          <Box p={3} width={1 / 2}>
+          <StyledBox width={1 / 2} mx={5}>
             <TokenInfo
               setupValues={transmutationService.setupValues}
               PIECOLORS={PIECOLORS}
               getTokenInfo={getTokenInfo}
             />
-          </Box>
-          <Box p={3} width={1 / 2}>
+            <LootShareDistro data={data} PIECOLORS={PIECOLORS} />
+          </StyledBox>
+          <StyledBox width={1 / 2} mx={5}>
             <TransmutationStatus
               setupValues={transmutationService.setupValues}
               PIECOLORS={PIECOLORS}
               getTokenInfo={getTokenInfo}
             />
-          </Box>
+            <LootGrab
+              data={data}
+              setupValues={transmutationService.setupValues}
+              getRequestToken={getRequestToken}
+            />
+          </StyledBox>
         </Flex>
-        <Flex>
-          <Box p={3} width={1 / 2}>
-            <h4>Github</h4>
-            <p>
-              repo status:{' '}
-              <a href={transmutationService.setupValues.githubRepo}>link</a>
-            </p>
-            {/* <img src="https://i.imgur.com/p8rXwlW.png" alt="github charts" /> */}
-          </Box>
-          <Box p={3} width={1 / 2}>
-            <h4>live Proposals</h4>
-          </Box>
-        </Flex>
-        <div>
-          <h4>More info DAOHAUS Stats</h4>
-        </div>
 
         <BottomNav />
       </PadDiv>

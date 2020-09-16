@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import { Legend, PieChart, Pie, Cell } from 'recharts';
+import { Legend, BarChart, Bar } from 'recharts';
 import { DaoServiceContext } from '../../contexts/Store';
 
 const TokenInfo = (props) => {
@@ -13,17 +13,12 @@ const TokenInfo = (props) => {
     const data = [
       {
         name: 'transmutation',
-        value: +daoService.web3.utils.fromWei(info.transSupply),
+        tm: +daoService.web3.utils.fromWei(info.transSupply),
+        tr: +daoService.web3.utils.fromWei(info.trustSupply),
+        mi: +daoService.web3.utils.fromWei(info.minionSupply),
+        da: +daoService.web3.utils.fromWei(info.daoSupply),
+        amt: +daoService.web3.utils.fromWei(info.totalSupply),
       },
-      {
-        name: 'trust',
-        value: +daoService.web3.utils.fromWei(info.trustSupply),
-      },
-      {
-        name: 'minion',
-        value: +daoService.web3.utils.fromWei(info.minionSupply),
-      },
-      { name: 'dao', value: +daoService.web3.utils.fromWei(info.daoSupply) },
     ];
     const other = daoService.web3.utils.fromWei(
       '' +
@@ -58,29 +53,25 @@ const TokenInfo = (props) => {
     <div>
       <h4>Token Info</h4>
       {tokenDistroInfo ? (
-        <PieChart width={400} height={400}>
-          <Pie
-            dataKey="value"
-            startAngle={360}
-            endAngle={0}
-            data={tokenDistroInfo}
-            cx={200}
-            cy={200}
-            outerRadius={80}
-            fill="#8884d8"
-            legendType={'circle'}
-            label
-            labelLine
-          >
-            {tokenDistroInfo.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={PIECOLORS[index % PIECOLORS.length]}
-              />
-            ))}
-          </Pie>
+        <BarChart
+          width={40}
+          height={400}
+          data={tokenDistroInfo}
+          layout={'vertical'}
+        >
           <Legend />
-        </PieChart>
+          <Bar dataKey="tm" fill="#888rd8" stackId="a" />
+          <Bar dataKey="tr" fill="#888rd5" stackId="a" />
+          <Bar dataKey="mi" fill="#888rd2" stackId="a" />
+          <Bar dataKey="da" fill="#888rd0" stackId="a" />
+          {tokenDistroInfo.map((entry, index) => (
+            <Bar
+              key={`cell-${index}`}
+              fill={PIECOLORS[index % PIECOLORS.length]}
+              stackId="a"
+            />
+          ))}
+        </BarChart>
       ) : null}
       <p>token address: {setupValues.giveToken}</p>
       <p>
