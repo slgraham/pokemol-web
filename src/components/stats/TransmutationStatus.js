@@ -16,7 +16,7 @@ const TransmutationStatus = (props) => {
 
     const data = [
       {
-        name: 'availible',
+        name: 'available',
         value: +daoService.web3.utils.fromWei(info.transSupply),
       },
       {
